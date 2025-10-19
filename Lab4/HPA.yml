@@ -1,0 +1,19 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  creationTimestamp: "2025-10-19T14:01:40Z"
+  name: nginx-deploy
+  namespace: web-app2
+  resourceVersion: "18072"
+  uid: b6882375-21bd-42fd-8f64-375a3e8bbc1c
+spec:
+  maxReplicas: 8
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-deploy
+  targetCPUUtilizationPercentage: 70
+status:
+  currentReplicas: 0
+  desiredReplicas: 0
