@@ -1,0 +1,6 @@
+---
+  - name: Restart Apache
+    ansible.builtin.service:
+      name: apache2
+      state: restarted
+    when: apache_restart_needed | default(false)
