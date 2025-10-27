@@ -1,20 +1,22 @@
 pipeline {
     agent any
+
     triggers {
-        pollSCM('0 * * * *') // every 1 hour
+        pollSCM('0 * * * *') // Check for changes every 1 hour
     }
+
     environment {
         REPO_URL = "https://github.com/EsraaShaabanElsayed/DevOps-Workshop-Labs.git"
-        
-        IMG_NAME = "JenkinsLabImage:latest"
+        IMAGE_NAME = "JenkinsLabImage"
+        CONTAINER_NAME = "JenkinsLabContainer"
         PORT = "3000"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                    git url: "${REPO_URL}", branch: 'jenkins-lab' 
-                    
+                echo "Checking out code from ${REPO_URL}..."
+                git url: "${REPO_URL}", branch: 'jenkins-lab'
             }
         }
 
@@ -26,11 +28,11 @@ pipeline {
                 }
             }
         }
+
         stage('Run Container') {
             steps {
                 echo "Running Docker container..."
                 script {
-                    // Stop and remove old container if it exists
                     sh """
                     if [ \$(docker ps -q -f name=${CONTAINER_NAME}) ]; then
                         docker stop ${CONTAINER_NAME}
@@ -43,7 +45,6 @@ pipeline {
         }
     }
 
-
     post {
         always {
             echo "Pipeline completed!"
@@ -51,7 +52,3 @@ pipeline {
         }
     }
 }
-        
-
-      
-     
