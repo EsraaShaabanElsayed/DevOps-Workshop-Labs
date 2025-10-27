@@ -7,8 +7,8 @@ pipeline {
 
     environment {
         REPO_URL = "https://github.com/EsraaShaabanElsayed/DevOps-Workshop-Labs.git"
-        IMAGE_NAME = "JenkinsLabImage"
-        CONTAINER_NAME = "JenkinsLabContainer"
+        IMAGE_NAME = "esraa/nodejs-lab"
+        CONTAINER_NAME = "nodejs-lab-container"
         PORT = "3000"
     }
 
