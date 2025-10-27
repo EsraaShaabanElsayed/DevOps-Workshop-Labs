@@ -4,7 +4,7 @@ pipeline {
         pollSCM('0 * * * *') // every 1 hour
     }
     environment {
-        REPO_URL = "https://github.com/EsraaShaabanElsayed/ci-cd-pipeline-with-jenkins-docker-ansible-aws.git"
+        REPO_URL = "https://github.com/EsraaShaabanElsayed/DevOps-Workshop-Labs.git"
         
         IMG_NAME = "JenkinsLabImage:latest"
         PORT = "3000"
@@ -40,6 +40,14 @@ pipeline {
                     """
                 }
             }
+        }
+    }
+
+
+    post {
+        always {
+            echo "Pipeline completed!"
+            sh "docker ps | grep ${CONTAINER_NAME} || true"
         }
     }
 }
