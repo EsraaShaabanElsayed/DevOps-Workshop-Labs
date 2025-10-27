@@ -9,7 +9,7 @@ pipeline {
         REPO_URL = "https://github.com/EsraaShaabanElsayed/DevOps-Workshop-Labs.git"
         IMAGE_NAME = "esraa/nodejs-lab"
         CONTAINER_NAME = "nodejs-lab-container"
-        PORT = "3000"
+        PORT = "9898"
     }
 
     stages {
